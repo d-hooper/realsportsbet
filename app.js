@@ -25,15 +25,26 @@ const players = [
   { teamNumber: 2, emoji: '🐅', skill: 100, name: "Tiger" },
 ]
 
-const team1 = []
-
 // !SECTION
 
 // SECTION LOGIC
 
+// NOTE - Random teams
+
+function randomNumber() {
+  return Math.floor(Math.random() * 2) + 1
+}
+
+function createRandomTeams() {
+ players.forEach(player => player.teamNumber = randomNumber())
+ createTeams()
+}
+
 // !SECTION
 
 // SECTION DRAW / UPDATE
+
+//NOTE - Create teams
 const drawTeam1 = () => {
   let emojis = ''
   for (let i = 0; i < players.length; i++) {
@@ -62,8 +73,15 @@ const createTeam = (teamNumber) => {
   teamElem.innerText = emojis
 }
 
+const createTeams = () => {
+  createTeam(1)
+  createTeam(2)
+}
+
 // !SECTION
 
 // SECTION PAGE LOAD
+
+createTeams()
 
 // !SECTION 
