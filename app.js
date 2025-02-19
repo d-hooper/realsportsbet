@@ -40,6 +40,25 @@ function createRandomTeams() {
  createTeams()
 }
 
+// NOTE - Bank value updates
+function betAmount(amount) {
+  if (amount <= bank) {
+    bank -= amount
+    returnAmount(amount)
+  }
+  else {
+    window.alert('You do not have enough money for this bet!')
+  }
+}
+
+function returnAmount(amount) {
+  if (randomNumber() > 1) {
+    bank += (amount * 2) 
+    return console.log('gained amount', amount, 'new bank value', bank)
+  }
+  return console.log('lost amount', amount, 'bank value', bank)
+}
+
 // !SECTION
 
 // SECTION DRAW / UPDATE
