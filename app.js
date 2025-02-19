@@ -25,6 +25,19 @@ const players = [
   { teamNumber: randomNumber(), emoji: '🐅', skill: 100, name: "Tiger" },
 ]
 
+const teams =[
+    {
+      team: players.filter(player => player.teamNumber == 1),
+      skillLevel: 0
+    },
+    {
+      team: players.filter(player => player.teamNumber == 2),
+      skillLevel: 0
+    }
+  ]
+
+let selectedTeam
+
 // !SECTION
 
 // SECTION LOGIC
@@ -36,8 +49,8 @@ function randomNumber() {
 }
 
 function createRandomTeams() {
- players.forEach(player => player.teamNumber = randomNumber())
- createTeams()
+  players.forEach(player => player.teamNumber = randomNumber())
+  createTeams()
 }
 
 // NOTE - Bank value updates
@@ -51,12 +64,41 @@ function betAmount(amount) {
   }
 }
 
+function selectTeamForBet(teamNumber, amount) {
+  if (teamNumber == 1) {
+    selectedTeam = teams[0]
+    calculateSkillTotal()
+    betAmount(amount)
+  }
+  else {
+    selectedTeam = teams[1]
+    calculateSkillTotal()
+    betAmount(amount)
+  }
+}
+
 function returnAmount(amount) {
-  if (randomNumber() > 1) {
-    bank += (amount * 2) 
+  if (teams[0].skillLevel > teams[1].skillLevel) {
+    bank += (amount * 2)
     return console.log('gained amount', amount, 'new bank value', bank)
   }
   return console.log('lost amount', amount, 'bank value', bank)
+}
+
+
+//NOTE -Skill value calculations
+
+function calculateSkillTotal() {
+  for (let i = 0; i < teams.length; i++) {
+    const team = teams[i];
+    console.log(team)
+    for (let index = 0; index < teams[i].team.length; index++) {
+      const player = teams[i].team[index];
+      team.skillLevel += player.skill
+    }
+    console.log('Team', i + 1, 'Total skill level:', team.skillLevel); 
+  }
+  
 }
 
 // !SECTION
@@ -80,7 +122,7 @@ const drawTeam1 = () => {
 
 const createTeam = (teamNumber) => {
   let emojis = ''
-  let currentTeam = [] 
+  let currentTeam = []
   for (let i = 0; i < players.length; i++) {
     const player = players[i];
     if (player.teamNumber == teamNumber) {
