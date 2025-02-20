@@ -41,7 +41,7 @@ function calculateTeamSkill(number) {
   return skill
 }
 
-// NOTE - Random teams
+// NOTE - Random team generation
 
 function randomNumber() {
   return Math.floor(Math.random() * 2) + 1
@@ -79,21 +79,18 @@ function returnAmount(teamNumber, amount) {
   if (teamNumber == 1) {
     if (calculateTeamSkill(1) > calculateTeamSkill(2)) {
       bank += (amount * 2)
+      updateBankValue()
       console.log('gained amount', amount, 'new bank value', bank)
       return
     }
   }
   if (calculateTeamSkill(2) > calculateTeamSkill(1)) {
     bank += (amount * 2)
+    updateBankValue()
     console.log('gained amount', amount, 'new bank value', bank)
     return
   }
   console.log('lost amount', amount, 'bank value', bank)
-  // if (randomNumber() > 1) {
-  //   bank += (amount * 2)
-  //   return console.log('gained amount', amount, 'new bank value', bank)
-  // }
-  // return console.log('lost amount', amount, 'bank value', bank)
 }
 
 // !SECTION
@@ -132,6 +129,13 @@ const createTeam = (teamNumber) => {
 const createTeams = () => {
   createTeam(1)
   createTeam(2)
+}
+
+//NOTE - Draw new bank value
+function updateBankValue() {
+  let bankValue = bank
+  bankValueElem = document.getElementById('bankValue')
+  bankValueElem.innerText = bank
 }
 
 // !SECTION
