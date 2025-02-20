@@ -1,3 +1,17 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  justify-content: space-between;
+}
+
+main {
+  background-image: url(https://images.unsplash.com/flagged/photo-1550413231-202a9d53a331?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: cover; 
+  background-position: top;
+  flex-grow: 1;
+}
+
 .text-shadow {
   text-shadow: 1px 1px 3px #000;
 }

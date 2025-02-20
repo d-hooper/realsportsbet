@@ -79,18 +79,35 @@ function returnAmount(teamNumber, amount) {
   if (teamNumber == 1) {
     if (calculateTeamSkill(1) > calculateTeamSkill(2)) {
       bank += (amount * 2)
-      updateBankValue()
-      console.log('gained amount', amount, 'new bank value', bank)
+      drawBankValue()
+      console.log('gained amount:', amount, 'new bank value:', bank)
       return
     }
   }
   if (calculateTeamSkill(2) > calculateTeamSkill(1)) {
     bank += (amount * 2)
-    updateBankValue()
-    console.log('gained amount', amount, 'new bank value', bank)
+    drawBankValue()
+    console.log('gained amount:', amount, 'new bank value:', bank)
     return
   }
-  console.log('lost amount', amount, 'bank value', bank)
+  console.log('lost amount:', amount, 'bank value:', bank)
+  drawBankValue()
+  checkBank()
+}
+
+//NOTE - Bank check and reset
+
+function checkBank() {
+  if (bank <= 0) {
+    window.alert('You are all out of money!!!')
+    window.confirm('Would you like to play again?')
+    resetBank()
+    createRandomTeams()
+  }
+}
+
+function resetBank() {
+  bank = 100
 }
 
 // !SECTION
@@ -98,6 +115,7 @@ function returnAmount(teamNumber, amount) {
 // SECTION DRAW / UPDATE
 
 //NOTE - Create teams
+// old function version -- unused
 const drawTeam1 = () => {
   let emojis = ''
   for (let i = 0; i < players.length; i++) {
@@ -114,11 +132,9 @@ const drawTeam1 = () => {
 
 const createTeam = (teamNumber) => {
   let emojis = ''
-  let currentTeam = []
   for (let i = 0; i < players.length; i++) {
     const player = players[i];
     if (player.teamNumber == teamNumber) {
-      currentTeam.push(player)
       emojis += player.emoji
     }
   }
@@ -132,10 +148,11 @@ const createTeams = () => {
 }
 
 //NOTE - Draw new bank value
-function updateBankValue() {
+function drawBankValue() {
   let bankValue = bank
   bankValueElem = document.getElementById('bankValue')
-  bankValueElem.innerText = bank
+  bankValueElem.innerText = bank.toFixed(2)
+  createRandomTeams()
 }
 
 // !SECTION

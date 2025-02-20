@@ -19,24 +19,39 @@
 <body>
 
   <header>
-
+    <div class="bg-primary bg-opacity-75 text-shadow text-light px-3">
+      <p><span class="fs-1">ERSB</span> Exciting Real Sports Bets</p>
+    </div>
   </header>
 
   <main>
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-12">
-          <div class="fs-1 text-center">
-            <p>Bank: $<span id="bankValue">100</span></p>
+        <div class="col-4">
+          <div class="fs-1 text-start text-light text-shadow bg-dark bg-opacity-50 mt-4 px-3 rounded-5">
+            <p>Bank</p>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <div class="fs-1 text-end text-light text-shadow bg-secondary bg-opacity-75 rounded-5 px-3">
+            <p>$<span id="bankValue">100.00</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
         <div class="col-6">
-          <div id="1" class="bg-dark text-light text-center fs-2 rounded-5 py-2 my-4">
+          <div id="1" class="bg-dark text-center fs-2 rounded-5 py-2 my-4">
             <span>TEAM 1</span>
           </div>
         </div>
         <div class="col-6">
-          <div id="2" class="bg-dark text-light text-center fs-2 rounded-5 py-2 my-4">
+          <div id="2" class="bg-dark text-center fs-2 rounded-5 py-2 my-4">
             <span>TEAM 2</span>
           </div>
         </div>
@@ -48,22 +63,22 @@
           <div class="row">
             <div class="col-3">
               <div class="my-2 text-center">
-                <button onclick="placeBet(1, 5)" class="btn btn-success rounded-pill text-light text-shadow fs-4">Bet $5</button>
+                <button onclick="placeBet(1, 5)" class="btn btn-success rounded-4 text-light text-shadow fs-4">Bet $5</button>
               </div>
             </div>
             <div class="col-3">
               <div class="my-2 text-center">
-                <button onclick="placeBet(1, 25)" class="btn btn-success rounded-pill text-light text-shadow fs-4">Bet $25</button>
+                <button onclick="placeBet(1, 25)" class="btn btn-success rounded-4 text-light text-shadow fs-4">Bet $25</button>
               </div>
             </div>
             <div class="col-3">
               <div class="my-2 text-center">
-                <button onclick="placeBet(1, 100)" class="btn btn-success rounded-pill text-light text-shadow fs-4">Bet $100</button>
+                <button onclick="placeBet(1, 100)" class="btn btn-success rounded-4 text-light text-shadow fs-4">Bet $100</button>
               </div>
             </div>
             <div class="col-3">
               <div class="my-2 text-center">
-                <button onclick="placeBet(1, bank)" class="btn btn-success rounded-pill text-light text-shadow fs-4">Bet it all!!!</button>
+                <button onclick="placeBet(1, bank)" class="btn btn-success rounded-4 text-light text-shadow fs-4">Bet it all!!!</button>
               </div>
             </div>
           </div>
@@ -72,22 +87,22 @@
           <div class="row">
             <div class="col-3">
               <div class="my-2 text-center">
-                <button onclick="placeBet(2, 5)" class="btn btn-info rounded-pill text-light text-shadow fs-4">Bet $5</button>
+                <button onclick="placeBet(2, 5)" class="btn btn-info rounded-4 text-light text-shadow fs-4">Bet $5</button>
               </div>
             </div>
             <div class="col-3">
               <div class="my-2 text-center">
-                <button onclick="placeBet(2, 25)" class="btn btn-info rounded-pill text-light text-shadow fs-4">Bet $25</button>
+                <button onclick="placeBet(2, 25)" class="btn btn-info rounded-4 text-light text-shadow fs-4">Bet $25</button>
               </div>
             </div>
             <div class="col-3">
               <div class="my-2 text-center">
-                <button onclick="placeBet(2, 100)" class="btn btn-info rounded-pill text-light text-shadow fs-4">Bet $100</button>
+                <button onclick="placeBet(2, 100)" class="btn btn-info rounded-4 text-light text-shadow fs-4">Bet $100</button>
               </div>
             </div>
             <div class="col-3">
               <div class="my-2 text-center">
-                <button onclick="placeBet(2, bank)" class="btn btn-info rounded-pill text-light text-shadow fs-4">Bet it all!!!</button>
+                <button onclick="placeBet(2, bank)" class="btn btn-info rounded-4 text-light text-shadow fs-4">Bet it all!!!</button>
               </div>
             </div>
           </div>
@@ -98,8 +113,10 @@
 
   </main>
 
-  <footer>
-
+  <footer class="pb-0">
+    <div class="bg-primary bg-opacity-75 text-shadow text-light px-3 text-end pb-0">
+      <p>&copy; ERSB 2025</p>
+    </div>
   </footer>
 
   <script src="app.js"></script>
