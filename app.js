@@ -69,11 +69,20 @@ function selectTeamForBet(teamNumber, amount) {
     selectedTeam = teams[0]
     calculateSkillTotal()
     betAmount(amount)
+    drawBankValue()
+    checkBank()
+    createRandomTeams()
+    resetSkillLevel()
+    
   }
   else {
     selectedTeam = teams[1]
     calculateSkillTotal()
     betAmount(amount)
+    drawBankValue()
+    checkBank()
+    createRandomTeams()
+    resetSkillLevel()
   }
 }
 
@@ -97,8 +106,31 @@ function calculateSkillTotal() {
       team.skillLevel += player.skill
     }
     console.log('Team', i + 1, 'Total skill level:', team.skillLevel); 
+  } 
+}
+
+function resetSkillLevel() {
+  teams.forEach(team => team.skillLevel = 0)
+}
+
+//NOTE - Bank at 0 / Reset
+
+function checkBank() {
+  if (bank <= 0){
+    drawBankValue()
+    window.alert('You have run out of money!!!')
+    window.confirm('Would you like to play again?')
+    resetGame()
+    return
   }
-  
+  return
+}
+
+function resetGame() {
+  bank = 100
+  selectedTeam = undefined
+  createRandomTeams()
+  drawBankValue()
 }
 
 // !SECTION
@@ -137,6 +169,14 @@ const createTeam = (teamNumber) => {
 const createTeams = () => {
   createTeam(1)
   createTeam(2)
+}
+
+//NOTE - Draw updated bank value 
+function drawBankValue() {
+  let bankValue = bank
+  console.log('Bank:', bankValue)
+  bankValueElem = document.getElementById('bankValue')
+  bankValueElem.innerText = bankValue.toFixed(2)
 }
 
 // !SECTION
