@@ -29,6 +29,18 @@ const players = [
 
 // SECTION LOGIC
 
+//NOTE - Select team
+function getTeam(number) {
+  return players.filter(player => player.teamNumber == number)
+}
+
+function calculateTeamSkill(number) {
+  let team = getTeam(number)
+  let skill = 0
+  team.forEach(player => skill += player.skill)
+  return skill
+}
+
 // NOTE - Random teams
 
 function randomNumber() {
@@ -36,27 +48,52 @@ function randomNumber() {
 }
 
 function createRandomTeams() {
- players.forEach(player => player.teamNumber = randomNumber())
- createTeams()
+  players.forEach(player => player.teamNumber = randomNumber())
+  createTeams()
 }
 
-// NOTE - Bank value updates
-function betAmount(amount) {
-  if (amount <= bank) {
+// NOTE -  Bet and Bank updates
+
+function placeBet(teamNumber, amount) {
+  if (teamNumber == 1) {
+    if (bank >= amount) {
+      bank -= amount
+      returnAmount(1, amount)
+      return
+    }
+    else {
+      window.alert('You do not have enough money for this bet!')
+    }
+  }
+
+  if (bank >= amount) {
     bank -= amount
-    returnAmount(amount)
+    returnAmount(2, amount)
   }
   else {
     window.alert('You do not have enough money for this bet!')
   }
 }
 
-function returnAmount(amount) {
-  if (randomNumber() > 1) {
-    bank += (amount * 2) 
-    return console.log('gained amount', amount, 'new bank value', bank)
+function returnAmount(teamNumber, amount) {
+  if (teamNumber == 1) {
+    if (calculateTeamSkill(1) > calculateTeamSkill(2)) {
+      bank += (amount * 2)
+      console.log('gained amount', amount, 'new bank value', bank)
+      return
+    }
   }
-  return console.log('lost amount', amount, 'bank value', bank)
+  if (calculateTeamSkill(2) > calculateTeamSkill(1)) {
+    bank += (amount * 2)
+    console.log('gained amount', amount, 'new bank value', bank)
+    return
+  }
+  console.log('lost amount', amount, 'bank value', bank)
+  // if (randomNumber() > 1) {
+  //   bank += (amount * 2)
+  //   return console.log('gained amount', amount, 'new bank value', bank)
+  // }
+  // return console.log('lost amount', amount, 'bank value', bank)
 }
 
 // !SECTION
@@ -80,7 +117,7 @@ const drawTeam1 = () => {
 
 const createTeam = (teamNumber) => {
   let emojis = ''
-  let currentTeam = [] 
+  let currentTeam = []
   for (let i = 0; i < players.length; i++) {
     const player = players[i];
     if (player.teamNumber == teamNumber) {
