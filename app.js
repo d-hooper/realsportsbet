@@ -125,7 +125,7 @@ const drawTeam1 = () => {
       emojis += player.emoji
     }
   }
-  team1Elem = document.getElementById('1')
+  let team1Elem = document.getElementById('1')
   team1Elem.innerText = emojis
 
 }
@@ -138,7 +138,7 @@ const createTeam = (teamNumber) => {
       emojis += player.emoji
     }
   }
-  teamElem = document.getElementById(teamNumber)
+  let teamElem = document.getElementById(teamNumber)
   teamElem.innerText = emojis
 }
 
@@ -150,7 +150,7 @@ const createTeams = () => {
 //NOTE - Draw new bank value
 function drawBankValue() {
   let bankValue = bank
-  bankValueElem = document.getElementById('bankValue')
+  let bankValueElem = document.getElementById('bankValue')
   bankValueElem.innerText = bank.toFixed(2)
   createRandomTeams()
 }
